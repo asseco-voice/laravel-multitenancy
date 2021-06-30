@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Asseco\Multitenancy\App\TenantResolvers;
 
 use Asseco\Multitenancy\App\Models\Tenant;
-use Asseco\Multitenancy\App\TenantResolvers\TenantResolver;
 use Asseco\Multitenancy\App\Traits\UsesTenantModel;
 use Illuminate\Http\Request;
 
