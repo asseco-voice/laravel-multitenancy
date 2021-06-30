@@ -5,9 +5,8 @@ return [
     /**
      * These are standard Laravel connections adapted to support different
      * landlord connections. Other than different ENV values and keys
-     * prepended with 'landlord-', nothing is different
+     * prepended with 'landlord-', nothing is different.
      */
-
     'landlord-sqlite' => [
         'driver'                  => 'sqlite',
         'url'                     => env('LANDLORD_URL'),
