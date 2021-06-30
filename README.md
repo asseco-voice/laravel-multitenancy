@@ -11,4 +11,13 @@ Service provider will be registered automatically.
 
 ## Setup
 
-//
+Env values za landlord db kao i za laravel
+
+isprobaj onu "same" varijantu
+
+isprobaj i one taskove iz configa kad se switcha tenant
+
+
+
+
+credits to: spatie

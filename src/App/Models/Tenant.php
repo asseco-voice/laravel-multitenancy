@@ -1,0 +1,103 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Asseco\Multitenancy\Models;
+
+use Asseco\Multitenancy\Database\Factories\TenantFactory;
+use Asseco\Multitenancy\Facades\ForgetCurrentTenant;
+use Asseco\Multitenancy\Facades\MakeTenantCurrent;
+use Asseco\Multitenancy\TenantCollection;
+use Asseco\Multitenancy\Traits\HasDbConnections;
+use Closure;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Tenant extends Model
+{
+    use HasFactory, HasDbConnections;
+
+    protected $guarded = [
+        'id', 'created_at', 'updated_at'
+    ];
+
+    protected static function newFactory()
+    {
+        return TenantFactory::new();
+    }
+
+    public function getConnectionName()
+    {
+        return $this->getLandlordDbConnection();
+    }
+
+    public function newCollection(array $models = []): TenantCollection
+    {
+        return new TenantCollection($models);
+    }
+
+    public function makeCurrent(): self
+    {
+        if ($this->isCurrent()) {
+            return $this;
+        }
+
+        static::forgetCurrent();
+
+        MakeTenantCurrent::execute($this);
+
+        return $this;
+    }
+
+    public function isCurrent(): bool
+    {
+        return optional(static::current())->id === $this->id;
+    }
+
+    public static function current(): ?self
+    {
+        $containerKey = config('asseco-multitenancy.current_tenant_container_key');
+
+        if (!app()->has($containerKey)) {
+            return null;
+        }
+
+        return app($containerKey);
+    }
+
+    public static function forgetCurrent(): ?Tenant
+    {
+        $currentTenant = static::current();
+
+        if (is_null($currentTenant)) {
+            return null;
+        }
+
+        ForgetCurrentTenant::execute($currentTenant);
+
+        return $currentTenant;
+    }
+
+    public static function checkCurrent(): bool
+    {
+        return static::current() !== null;
+    }
+
+    public function execute(callable $callable)
+    {
+        $originalCurrentTenant = Tenant::current();
+
+        $this->makeCurrent();
+
+        return tap($callable($this), static function () use ($originalCurrentTenant) {
+            $originalCurrentTenant
+                ? $originalCurrentTenant->makeCurrent()
+                : Tenant::forgetCurrent();
+        });
+    }
+
+    public function callback(callable $callable): Closure
+    {
+        return fn() => $this->execute($callable);
+    }
+}
