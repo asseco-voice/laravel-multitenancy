@@ -16,7 +16,7 @@ class MakeTenantCurrent extends AbstractAction
         MakingTenantCurrent::dispatch($tenant);
 
         $this->tasksCollection->each(
-            fn(SwitchTenantTask $task) => $task->makeCurrent($tenant)
+            fn (SwitchTenantTask $task) => $task->makeCurrent($tenant)
         );
 
         $this->bindAsCurrentTenant($tenant);

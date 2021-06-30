@@ -12,6 +12,6 @@ trait UsesTenantModel
     {
         $tenantModelClass = config('asseco-multitenancy.tenant_model');
 
-        return new $tenantModelClass;
+        return new $tenantModelClass();
     }
 }

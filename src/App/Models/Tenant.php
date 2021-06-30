@@ -14,10 +14,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tenant extends Model
 {
-    use HasFactory, HasDbConnections;
+    use HasFactory;
+    use HasDbConnections;
 
     protected $guarded = [
-        'id', 'created_at', 'updated_at'
+        'id', 'created_at', 'updated_at',
     ];
 
     protected static function newFactory()
@@ -92,6 +93,6 @@ class Tenant extends Model
 
     public function callback(callable $callable): Closure
     {
-        return fn() => $this->execute($callable);
+        return fn () => $this->execute($callable);
     }
 }

@@ -15,6 +15,7 @@ class SwitchTenantDatabase implements SwitchTenantTask
 
     /**
      * @param Tenant $tenant
+     *
      * @throws Exception
      */
     public function makeCurrent(Tenant $tenant): void
@@ -32,6 +33,7 @@ class SwitchTenantDatabase implements SwitchTenantTask
 
     /**
      * @param string|null $databaseName
+     *
      * @throws Exception
      */
     protected function setTenantConnectionDatabaseName(?string $databaseName)

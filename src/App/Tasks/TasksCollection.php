@@ -12,7 +12,6 @@ class TasksCollection extends Collection
     {
         $tasks = collect($taskClassNames)
             ->map(function ($taskParameters, $taskClass) {
-
                 if (is_array($taskParameters) && is_numeric($taskClass)) {
                     $taskClass = array_key_first($taskParameters);
                     $taskParameters = $taskParameters[$taskClass];

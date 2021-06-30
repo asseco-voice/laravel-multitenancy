@@ -13,13 +13,13 @@ return [
     'tenant_resolver'              => ByDomain::class,
 
     /**
-     * Tenant model
+     * Tenant model.
      */
     'tenant_model'                 => Tenant::class,
 
     /**
      * Key to bound the current tenant to.
-     * You'll be able to fetch it with app('currentTenant')
+     * You'll be able to fetch it with app('currentTenant').
      */
     'current_tenant_container_key' => 'currentTenant',
 
@@ -28,6 +28,6 @@ return [
      * Task must implement SwitchTenantTask interface.
      */
     'switch_tenant_tasks'          => [
-        SwitchTenantDatabase::class
+        SwitchTenantDatabase::class,
     ],
 ];

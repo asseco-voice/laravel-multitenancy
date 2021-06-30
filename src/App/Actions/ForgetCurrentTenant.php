@@ -16,7 +16,7 @@ class ForgetCurrentTenant extends AbstractAction
         ForgettingCurrentTenant::dispatch($tenant);
 
         $this->tasksCollection->each(
-            fn(SwitchTenantTask $task) => $task->forgetCurrent()
+            fn (SwitchTenantTask $task) => $task->forgetCurrent()
         );
 
         $this->clearBoundCurrentTenant();
