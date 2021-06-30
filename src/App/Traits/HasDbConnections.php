@@ -8,8 +8,7 @@ trait HasDbConnections
 {
     public function getLandlordDbConnection()
     {
-        return config('landlord-database.same') ?
-            config('database.default') : config('landlord-database.default');
+        return config('database.landlord-default');
     }
 
     public function getTenantDbConnection()
