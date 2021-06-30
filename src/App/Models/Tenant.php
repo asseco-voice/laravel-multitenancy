@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Asseco\Multitenancy\App\Models;
 
-use Asseco\Multitenancy\App\Database\Factories\TenantFactory;
 use Asseco\Multitenancy\App\Facades\ForgetCurrentTenant;
 use Asseco\Multitenancy\App\Facades\MakeTenantCurrent;
 use Asseco\Multitenancy\App\Traits\HasDbConnections;
+use Asseco\Multitenancy\Database\Factories\TenantFactory;
 use Closure;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
