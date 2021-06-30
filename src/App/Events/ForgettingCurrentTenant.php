@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Events;
+namespace Asseco\Multitenancy\App\Events;
 
-use Asseco\Multitenancy\Models\Tenant;
+use Asseco\Multitenancy\App\Models\Tenant;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

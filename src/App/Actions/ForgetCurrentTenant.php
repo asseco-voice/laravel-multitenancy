@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Actions;
+namespace Asseco\Multitenancy\App\Actions;
 
-use Asseco\Multitenancy\Events\ForgettingCurrentTenant;
-use Asseco\Multitenancy\Events\ForgotCurrentTenant;
-use Asseco\Multitenancy\Models\Tenant;
-use Asseco\Multitenancy\Tasks\SwitchTenantTask;
+use Asseco\Multitenancy\App\Events\ForgettingCurrentTenant;
+use Asseco\Multitenancy\App\Events\ForgotCurrentTenant;
+use Asseco\Multitenancy\App\Models\Tenant;
+use Asseco\Multitenancy\App\Tasks\SwitchTenantTask;
 
 class ForgetCurrentTenant extends AbstractAction
 {

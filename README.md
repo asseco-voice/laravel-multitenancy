@@ -21,3 +21,13 @@ isprobaj i one taskove iz configa kad se switcha tenant
 
 
 credits to: spatie
+
+
+## Publish
+
+php artisan vendor:publish --tag="asseco-multitenancy-migrations"
+
+
+php artisan migrate --path=database/migrations/landlord --database=landlord
+
+

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Models;
+namespace Asseco\Multitenancy\App\Models;
 
-use Asseco\Multitenancy\Database\Factories\TenantFactory;
-use Asseco\Multitenancy\Facades\ForgetCurrentTenant;
-use Asseco\Multitenancy\Facades\MakeTenantCurrent;
-use Asseco\Multitenancy\Traits\HasDbConnections;
+use Asseco\Multitenancy\App\Database\Factories\TenantFactory;
+use Asseco\Multitenancy\App\Facades\ForgetCurrentTenant;
+use Asseco\Multitenancy\App\Facades\MakeTenantCurrent;
+use Asseco\Multitenancy\App\Traits\HasDbConnections;
 use Closure;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

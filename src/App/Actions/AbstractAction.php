@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Actions;
+namespace Asseco\Multitenancy\App\Actions;
 
-use Asseco\Multitenancy\Models\Tenant;
-use Asseco\Multitenancy\Tasks\TasksCollection;
+use Asseco\Multitenancy\App\Models\Tenant;
+use Asseco\Multitenancy\App\Tasks\TasksCollection;
 
 abstract class AbstractAction
 {

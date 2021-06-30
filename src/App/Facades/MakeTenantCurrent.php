@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Facades;
+namespace Asseco\Multitenancy\App\Facades;
 
-use Asseco\Multitenancy\Models\Tenant;
+use Asseco\Multitenancy\App\Models\Tenant;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \Asseco\Multitenancy\Actions\MakeTenantCurrent execute(Tenant $tenant)
+ * @method static \Asseco\Multitenancy\App\Actions\MakeTenantCurrent execute(Tenant $tenant)
  *
- * @see \Asseco\Multitenancy\Actions\MakeTenantCurrent
+ * @see \Asseco\Multitenancy\App\Actions\MakeTenantCurrent
  */
 class MakeTenantCurrent extends Facade
 {

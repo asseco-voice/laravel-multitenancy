@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Http\Middleware;
+namespace Asseco\Multitenancy\App\Http\Middleware;
 
-use Asseco\Multitenancy\Traits\UsesTenantModel;
+use Asseco\Multitenancy\App\Traits\UsesTenantModel;
 use Closure;
 use Exception;
 

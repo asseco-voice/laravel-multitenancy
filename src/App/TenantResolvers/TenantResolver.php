@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\TenantResolvers;
+namespace Asseco\Multitenancy\App\TenantResolvers;
 
-use Asseco\Multitenancy\Models\Tenant;
+use Asseco\Multitenancy\App\Models\Tenant;
 use Illuminate\Http\Request;
 
 interface TenantResolver

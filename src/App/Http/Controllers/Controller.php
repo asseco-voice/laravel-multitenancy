@@ -1,6 +1,6 @@
 <?php
 
-namespace Asseco\Multitenancy\App\Http\Controllers;
+namespace Asseco\Multitenancy\App\App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

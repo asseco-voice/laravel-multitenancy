@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy;
+namespace Asseco\Multitenancy\App;
 
-use Asseco\Multitenancy\Models\Tenant;
-use Asseco\Multitenancy\TenantResolvers\TenantResolver;
-use Asseco\Multitenancy\Traits\UsesTenantModel;
+use Asseco\Multitenancy\App\Models\Tenant;
+use Asseco\Multitenancy\App\TenantResolvers\TenantResolver;
+use Asseco\Multitenancy\App\Traits\UsesTenantModel;
 use Illuminate\Http\Request;
 
 class ByDomain implements TenantResolver

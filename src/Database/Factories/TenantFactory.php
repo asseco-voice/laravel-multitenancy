@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\Multitenancy\Database\Factories;
 
-use Asseco\Multitenancy\Models\Tenant;
+use Asseco\Multitenancy\App\Models\Tenant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TenantFactory extends Factory

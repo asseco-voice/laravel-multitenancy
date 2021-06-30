@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Tasks;
+namespace Asseco\Multitenancy\App\Tasks;
 
-use Asseco\Multitenancy\Models\Tenant;
+use Asseco\Multitenancy\App\Models\Tenant;
 
 interface SwitchTenantTask
 {

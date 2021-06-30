@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Traits;
+namespace Asseco\Multitenancy\App\Traits;
 
-use Asseco\Multitenancy\Models\Tenant;
+use Asseco\Multitenancy\App\Models\Tenant;
 
 trait UsesTenantModel
 {

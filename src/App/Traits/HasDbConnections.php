@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\Traits;
+namespace Asseco\Multitenancy\App\Traits;
 
 trait HasDbConnections
 {

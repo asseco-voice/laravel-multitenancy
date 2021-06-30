@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\Multitenancy\Database\Seeders;
 
-use Asseco\Multitenancy\Models\Tenant;
+use Asseco\Multitenancy\App\Models\Tenant;
 use Illuminate\Database\Seeder;
 
 class TenantSeeder extends Seeder
