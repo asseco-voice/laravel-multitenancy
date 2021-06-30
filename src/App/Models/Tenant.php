@@ -7,7 +7,6 @@ namespace Asseco\Multitenancy\Models;
 use Asseco\Multitenancy\Database\Factories\TenantFactory;
 use Asseco\Multitenancy\Facades\ForgetCurrentTenant;
 use Asseco\Multitenancy\Facades\MakeTenantCurrent;
-use Asseco\Multitenancy\TenantCollection;
 use Asseco\Multitenancy\Traits\HasDbConnections;
 use Closure;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,11 +28,6 @@ class Tenant extends Model
     public function getConnectionName()
     {
         return $this->getLandlordDbConnection();
-    }
-
-    public function newCollection(array $models = []): TenantCollection
-    {
-        return new TenantCollection($models);
     }
 
     public function makeCurrent(): self
