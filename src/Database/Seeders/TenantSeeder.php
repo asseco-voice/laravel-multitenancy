@@ -13,14 +13,18 @@ class TenantSeeder extends Seeder
     {
         $data = [
             [
-                'name'     => 'foo',
-                'domain'   => 'foo.localhost',
-                'database' => 'foo',
+                'name'       => 'foo',
+                'domain'     => 'foo.localhost',
+                'database'   => 'foo',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'name'     => 'bar',
-                'domain'   => 'bar.localhost',
-                'database' => 'bar',
+                'name'       => 'bar',
+                'domain'     => 'bar.localhost',
+                'database'   => 'bar',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ];
 

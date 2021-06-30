@@ -20,7 +20,8 @@ class MultitenancyServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/asseco-multitenancy.php', 'asseco-multitenancy');
-        $this->mergeConfigFrom(__DIR__.'/../config/landlord-database.php', 'database.connections');
+        $this->mergeConfigFrom(__DIR__.'/../config/landlord-database.php', 'database');
+        $this->mergeConfigFrom(__DIR__.'/../config/landlord-connections.php', 'database.connections');
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
     }
