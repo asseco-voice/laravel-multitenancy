@@ -1,8 +1,8 @@
 <?php
 
-use Asseco\Multitenancy\ByDomain;
-use Asseco\Multitenancy\Models\Tenant;
-use Asseco\Multitenancy\Tasks\SwitchTenantDatabase;
+use Asseco\Multitenancy\App\Models\Tenant;
+use Asseco\Multitenancy\App\Tasks\SwitchTenantDatabase;
+use Asseco\Multitenancy\App\TenantResolvers\ByDomain;
 
 return [
 

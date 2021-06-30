@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Multitenancy\App;
+namespace Asseco\Multitenancy\App\TenantResolvers;
 
 use Asseco\Multitenancy\App\Models\Tenant;
 use Asseco\Multitenancy\App\TenantResolvers\TenantResolver;
