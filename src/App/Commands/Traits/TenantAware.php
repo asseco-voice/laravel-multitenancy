@@ -16,7 +16,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  * existing commands.
  *
  * Trait TenantAware
- * @package Asseco\Multitenancy\App\Commands
  */
 trait TenantAware
 {
@@ -52,12 +51,11 @@ trait TenantAware
         return $tenantQuery
             ->cursor()
             ->map(function (Tenant $tenant) {
-
                 $this->line('');
                 $this->info("Running command for tenant `{$tenant->name}` (id: {$tenant->getKey()})...");
-                $this->line("---------------------------------------------------------");
+                $this->line('---------------------------------------------------------');
 
-                $tenant->execute(fn() => (int)$this->laravel->call([$this, 'handle']));
+                $tenant->execute(fn () => (int) $this->laravel->call([$this, 'handle']));
             })
             ->sum();
     }
