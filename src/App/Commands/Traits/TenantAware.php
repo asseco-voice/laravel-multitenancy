@@ -16,7 +16,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  * existing commands.
  *
  * Trait TenantAware
- * @package Asseco\Multitenancy\App\Commands
  */
 trait TenantAware
 {
@@ -30,12 +29,26 @@ trait TenantAware
     protected function configureUsingFluentDefinition()
     {
         $this->signature .= "\n{--tenant=* : Specify tenant ID for running the command for a single tenant}";
+        $this->signature .= "\n{--landlord : Run landlord migrations}";
 
         parent::configureUsingFluentDefinition();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $landlord = $this->option('landlord');
+
+        if($landlord){
+            $this->line('');
+            $this->info("Running landlord command (ignoring --database and --path arguments)...");
+            $this->line('----------------------------------------------------------------------');
+
+            $this->input->setOption('database', config('database.landlord-default'));
+            $this->input->setOption('path', 'database/migrations/landlord');
+
+            return parent::execute($input, $output);
+        }
+
         $tenants = Arr::wrap($this->option('tenant'));
 
         $tenantQuery = $this->getTenantModel()::query()
@@ -52,12 +65,11 @@ trait TenantAware
         return $tenantQuery
             ->cursor()
             ->map(function (Tenant $tenant) {
-
                 $this->line('');
                 $this->info("Running command for tenant `{$tenant->name}` (id: {$tenant->getKey()})...");
-                $this->line("---------------------------------------------------------");
+                $this->line('---------------------------------------------------------');
 
-                $tenant->execute(fn() => (int)$this->laravel->call([$this, 'handle']));
+                $tenant->execute(fn () => (int) $this->laravel->call([$this, 'handle']));
             })
             ->sum();
     }
