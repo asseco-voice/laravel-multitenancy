@@ -38,9 +38,9 @@ trait TenantAware
     {
         $landlord = $this->option('landlord');
 
-        if($landlord){
+        if ($landlord) {
             $this->line('');
-            $this->info("Running landlord command (ignoring --database and --path arguments)...");
+            $this->info('Running landlord command (ignoring --database and --path arguments)...');
             $this->line('----------------------------------------------------------------------');
 
             $this->input->setOption('database', config('database.landlord-default'));
