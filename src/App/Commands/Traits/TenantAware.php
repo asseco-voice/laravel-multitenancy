@@ -71,11 +71,11 @@ trait TenantAware
         $this->info('Running landlord command...');
         $this->line('---------------------------');
 
-        if (!$this->hasOption('database')) {
+        if ($this->hasOption('database')) {
             $this->input->setOption('database', config('database.landlord-default'));
         }
 
-        if (!$this->hasOption('path')) {
+        if ($this->hasOption('path')) {
             $this->input->setOption('path', 'database/migrations/landlord');
         }
 
