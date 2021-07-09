@@ -8,6 +8,7 @@ use Asseco\Multitenancy\App\Actions\ForgetCurrentTenant;
 use Asseco\Multitenancy\App\Actions\MakeTenantCurrent;
 use Asseco\Multitenancy\App\Commands\MigrateCommand;
 use Asseco\Multitenancy\App\Commands\SeedCommand;
+use Asseco\Multitenancy\App\Commands\WipeCommand;
 use Asseco\Multitenancy\App\Http\Middleware\NeedsTenant;
 use Asseco\Multitenancy\App\Tasks\TasksCollection;
 use Asseco\Multitenancy\App\TenantResolvers\TenantResolver;
@@ -21,11 +22,11 @@ class MultitenancyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/asseco-multitenancy.php', 'asseco-multitenancy');
-        $this->mergeConfigFrom(__DIR__.'/../config/landlord-database.php', 'database');
-        $this->mergeConfigFrom(__DIR__.'/../config/landlord-connections.php', 'database.connections');
-        $this->loadMigrationsFrom(__DIR__.'/../migrations');
-        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        $this->mergeConfigFrom(__DIR__ . '/../config/asseco-multitenancy.php', 'asseco-multitenancy');
+        $this->mergeConfigFrom(__DIR__ . '/../config/landlord-database.php', 'database');
+        $this->mergeConfigFrom(__DIR__ . '/../config/landlord-connections.php', 'database.connections');
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
     }
 
     /**
@@ -46,12 +47,12 @@ class MultitenancyServiceProvider extends ServiceProvider
     protected function publishableFiles(): void
     {
         $this->publishes([
-            __DIR__.'/../config/asseco-multitenancy.php' => config_path('asseco-multitenancy.php'),
+            __DIR__ . '/../config/asseco-multitenancy.php' => config_path('asseco-multitenancy.php'),
         ], 'asseco-multitenancy-config');
 
         if (!class_exists('CreateLandlordTenantsTable')) {
             $this->publishes([
-                __DIR__.'/../migrations/landlord/create_landlord_tenants_table.php.stub' => database_path('migrations/landlord/'.date('Y_m_d_His', time()).'_create_landlord_tenants_table.php'),
+                __DIR__ . '/../migrations/landlord/create_landlord_tenants_table.php.stub' => database_path('migrations/landlord/' . date('Y_m_d_His', time()) . '_create_landlord_tenants_table.php'),
             ], 'asseco-multitenancy-migrations');
         }
     }
@@ -97,6 +98,10 @@ class MultitenancyServiceProvider extends ServiceProvider
 
         $this->app->extend('command.seed', function ($service, $app) {
             return new SeedCommand($service);
+        });
+
+        $this->app->extend('command.db.wipe', function ($service, $app) {
+            return new WipeCommand($service);
         });
     }
 }
