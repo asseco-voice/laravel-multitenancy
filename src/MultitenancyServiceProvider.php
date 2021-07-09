@@ -7,6 +7,7 @@ namespace Asseco\Multitenancy;
 use Asseco\Multitenancy\App\Actions\ForgetCurrentTenant;
 use Asseco\Multitenancy\App\Actions\MakeTenantCurrent;
 use Asseco\Multitenancy\App\Commands\MigrateCommand;
+use Asseco\Multitenancy\App\Commands\SeedCommand;
 use Asseco\Multitenancy\App\Http\Middleware\NeedsTenant;
 use Asseco\Multitenancy\App\Tasks\TasksCollection;
 use Asseco\Multitenancy\App\TenantResolvers\TenantResolver;
@@ -68,9 +69,7 @@ class MultitenancyServiceProvider extends ServiceProvider
         $this->app->bind('make-tenant-current', MakeTenantCurrent::class);
         $this->app->bind('forget-current-tenant', ForgetCurrentTenant::class);
 
-        $this->app->extend('command.migrate', function ($service, $app) {
-            return new MigrateCommand($service);
-        });
+        $this->extendCoreArtisanCommands();
     }
 
     protected function determineCurrentTenant(): void
@@ -88,5 +87,16 @@ class MultitenancyServiceProvider extends ServiceProvider
         $router = app(Router::class);
 
         $router->prependMiddlewareToGroup('api', NeedsTenant::class);
+    }
+
+    protected function extendCoreArtisanCommands(): void
+    {
+        $this->app->extend('command.migrate', function ($service, $app) {
+            return new MigrateCommand($service);
+        });
+
+        $this->app->extend('command.seed', function ($service, $app) {
+            return new SeedCommand($service);
+        });
     }
 }
