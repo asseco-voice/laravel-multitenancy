@@ -40,13 +40,16 @@ trait TenantAware
 
     /**
      * When signature isn't used, we need to provide options through this method.
+     *
      * @return array[]
      */
     protected function getOptions()
     {
-        return array_merge(parent::getOptions(), [
+        return array_merge(
+            parent::getOptions(),
+            [
                 ['tenant', null, InputOption::VALUE_OPTIONAL, $this->tenantDescription],
-                ['landlord', null, InputOption::VALUE_NONE, $this->landlordDescription]
+                ['landlord', null, InputOption::VALUE_NONE, $this->landlordDescription],
             ]
         );
     }
@@ -65,7 +68,7 @@ trait TenantAware
     protected function executeLandlordCommand(InputInterface $input, OutputInterface $output)
     {
         $this->line('');
-        $this->info("Running landlord command...");
+        $this->info('Running landlord command...');
         $this->line('---------------------------');
 
         if (!$this->hasOption('database')) {
@@ -101,7 +104,7 @@ trait TenantAware
                 $this->info("Running command for tenant `{$tenant->name}` (id: {$tenant->getKey()})...");
                 $this->line('---------------------------------------------------------');
 
-                $tenant->execute(fn() => (int)$this->laravel->call([$this, 'handle']));
+                $tenant->execute(fn () => (int) $this->laravel->call([$this, 'handle']));
             })
             ->sum();
     }
