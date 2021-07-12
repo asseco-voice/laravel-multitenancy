@@ -14,6 +14,13 @@ class CreateLandlordTenantsTable extends Migration
             $table->string('domain')->unique();
             $table->string('database')->unique();
 
+            // These will only work if all are filled out
+            // otherwise it will default to a configured connection
+            $table->string('db_connection')->nullable();
+            $table->string('db_host')->nullable();
+            $table->string('db_port')->nullable();
+            $table->string('db_username')->nullable();
+            $table->string('db_password')->nullable();
 
             $table->timestamps();
         });

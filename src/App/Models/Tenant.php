@@ -21,6 +21,10 @@ class Tenant extends Model
         'id', 'created_at', 'updated_at',
     ];
 
+    protected $hidden = [
+        'password'
+    ];
+
     protected static function newFactory()
     {
         return TenantFactory::new();
@@ -30,6 +34,12 @@ class Tenant extends Model
     {
         return $this->getLandlordDbConnection();
     }
+
+    // TODO:
+//    public function setPasswordAttribute($value)
+//    {
+//        $this->attributes['password'] = bcrypt($value);
+//    }
 
     public function makeCurrent(): self
     {
