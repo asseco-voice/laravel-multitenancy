@@ -76,7 +76,18 @@ all tenants.
 Migrate landlord files by running ``php artisan migrate --landlord``
 
 Once you have a ``tenants`` table, you can add a new tenant by manually filling out the DB or
-using Tinker (TODO: API + auto create).
+using Tinker (TODO: API + auto create). At that point, be sure to also create the database you
+specified in the table.
+
+Example:
+```
+-------------------------------------
+ID  Name    Domain          Database
+-------------------------------------
+1   Foo     foo.localhost   foo
+```
+Be sure that ``foo`` database exists on the server you defined within `.env`. At the point you
+hit ``foo.localhost``, you will see the tenant switch to that particular DB.
 
 ## Separate tenant connections
 
