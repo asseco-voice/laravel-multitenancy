@@ -22,7 +22,7 @@ class Tenant extends Model
     ];
 
     protected $hidden = [
-        'password'
+        'password',
     ];
 
     protected static function newFactory()

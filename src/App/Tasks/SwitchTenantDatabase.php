@@ -22,6 +22,7 @@ class SwitchTenantDatabase implements SwitchTenantTask
     {
         if (!$this->externalConnectionSet($tenant)) {
             $this->setTenantConnectionDatabaseName($tenant->database);
+
             return;
         }
 
@@ -72,6 +73,7 @@ class SwitchTenantDatabase implements SwitchTenantTask
      * connection.
      *
      * @param Tenant $tenant
+     *
      * @return bool
      */
     protected function externalConnectionSet(Tenant $tenant): bool
