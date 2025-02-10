@@ -14,7 +14,7 @@ class SwitchTenantDatabase implements SwitchTenantTask
     use HasDbConnections;
 
     /**
-     * @param Tenant $tenant
+     * @param  Tenant  $tenant
      *
      * @throws Exception
      */
@@ -30,8 +30,8 @@ class SwitchTenantDatabase implements SwitchTenantTask
 
         config([
             "database.connections.{$connection}.database" => $tenant->database,
-            "database.connections.{$connection}.host"     => $tenant->db_host,
-            "database.connections.{$connection}.port"     => $tenant->db_port,
+            "database.connections.{$connection}.host" => $tenant->db_host,
+            "database.connections.{$connection}.port" => $tenant->db_port,
             "database.connections.{$connection}.username" => $tenant->db_username,
             "database.connections.{$connection}.password" => $tenant->db_password,
         ]);
@@ -48,7 +48,7 @@ class SwitchTenantDatabase implements SwitchTenantTask
     }
 
     /**
-     * @param string|null $databaseName
+     * @param  string|null  $databaseName
      *
      * @throws Exception
      */
@@ -72,8 +72,7 @@ class SwitchTenantDatabase implements SwitchTenantTask
      * and will consider it an invalid configuration, reverting to a default
      * connection.
      *
-     * @param Tenant $tenant
-     *
+     * @param  Tenant  $tenant
      * @return bool
      */
     protected function externalConnectionSet(Tenant $tenant): bool

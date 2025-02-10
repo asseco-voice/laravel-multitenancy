@@ -24,8 +24,8 @@ class TenantFactory extends Factory
     public function definition()
     {
         return [
-            'name'     => $this->faker->name,
-            'domain'   => $this->faker->unique()->url,
+            'name' => $this->faker->name,
+            'domain' => $this->faker->unique()->url,
             'database' => $this->faker->word,
         ];
     }

@@ -10,12 +10,12 @@ return [
      * Class responsible for resolving the tenants.
      * Default resolving is by domain.
      */
-    'tenant_resolver'              => ByDomain::class,
+    'tenant_resolver' => ByDomain::class,
 
     /**
      * Tenant model.
      */
-    'tenant_model'                 => Tenant::class,
+    'tenant_model' => Tenant::class,
 
     /**
      * Key to bound the current tenant to.
@@ -27,7 +27,7 @@ return [
      * Tasks to be performed when switching tenants.
      * Task must implement SwitchTenantTask interface.
      */
-    'switch_tenant_tasks'          => [
+    'switch_tenant_tasks' => [
         SwitchTenantDatabase::class,
     ],
 ];
