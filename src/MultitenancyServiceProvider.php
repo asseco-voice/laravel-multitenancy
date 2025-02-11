@@ -34,7 +34,6 @@ class MultitenancyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         $this->publishableFiles();
 
         if (!config('asseco-multitenancy.enabled')) {
@@ -70,6 +69,7 @@ class MultitenancyServiceProvider extends ServiceProvider
 
         $this->app->singleton(TasksCollection::class, function () {
             $tasks = config('asseco-multitenancy.switch_tenant_tasks');
+
             return new TasksCollection($tasks);
         });
 
@@ -100,6 +100,7 @@ class MultitenancyServiceProvider extends ServiceProvider
     {
         $this->app->extend('command.migrate', function ($command, $app) {
             echo 'Extending migrate!!';
+
             return new MigrateCommand($command);
         });
 

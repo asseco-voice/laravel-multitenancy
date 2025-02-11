@@ -14,7 +14,6 @@ class ByRequestHeader implements TenantResolver
 
     public function resolve(Request $request): ?Tenant
     {
-
         $headerKey = config('asseco-multitenancy.request_header_tenant_key');
         $tenantId = $request->header($headerKey, Tenant::DEFAULT_TENANTS_NAME);
 
