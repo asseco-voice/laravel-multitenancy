@@ -17,12 +17,12 @@ class Tenant extends Model
     use HasFactory;
     use HasDbConnections;
 
-    protected $guarded = [
-        'id', 'created_at', 'updated_at',
-    ];
+    const DEFAULT_TENANTS_NAME = 'default';
+
+    protected $guarded = ['created_at', 'updated_at'];
 
     protected $hidden = [
-        'password',
+        'db_password',
     ];
 
     protected static function newFactory()

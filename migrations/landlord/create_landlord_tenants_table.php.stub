@@ -9,10 +9,10 @@ class CreateLandlordTenantsTable extends Migration
     public function up()
     {
         Schema::create('tenants', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('domain')->unique();
-            $table->string('database')->unique();
+            $table->string('id')->primary();
+            $table->string('name')->unique();
+            $table->string('domain')->nullable();
+            $table->string('database');
 
             // These will only work if all are filled out
             // otherwise it will default to a configured connection

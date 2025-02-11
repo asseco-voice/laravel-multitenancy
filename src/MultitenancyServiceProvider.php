@@ -34,7 +34,14 @@ class MultitenancyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         $this->publishableFiles();
+
+        if (!config('asseco-multitenancy.enabled')) {
+            // skip the whole part
+            return;
+        }
+
         $this->bindClasses();
 
         if (!$this->app->runningInConsole()) {
@@ -63,7 +70,6 @@ class MultitenancyServiceProvider extends ServiceProvider
 
         $this->app->singleton(TasksCollection::class, function () {
             $tasks = config('asseco-multitenancy.switch_tenant_tasks');
-
             return new TasksCollection($tasks);
         });
 
@@ -92,16 +98,17 @@ class MultitenancyServiceProvider extends ServiceProvider
 
     protected function extendCoreArtisanCommands(): void
     {
-        $this->app->extend('command.migrate', function ($service, $app) {
-            return new MigrateCommand($service);
+        $this->app->extend('command.migrate', function ($command, $app) {
+            echo 'Extending migrate!!';
+            return new MigrateCommand($command);
         });
 
-        $this->app->extend('command.seed', function ($service, $app) {
-            return new SeedCommand($service);
+        $this->app->extend('command.seed', function ($command, $app) {
+            return new SeedCommand($command);
         });
 
-        $this->app->extend('command.db.wipe', function ($service, $app) {
-            return new WipeCommand($service);
+        $this->app->extend('command.db.wipe', function ($command, $app) {
+            return new WipeCommand($command);
         });
     }
 }

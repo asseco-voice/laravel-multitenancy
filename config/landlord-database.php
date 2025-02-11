@@ -2,6 +2,6 @@
 
 return [
 
-    'landlord-default' => env('LANDLORD_CONNECTION', 'landlord-mysql'),
+    'landlord-default' => env('LANDLORD_CONNECTION', 'landlord-pgsql'),
 
 ];
